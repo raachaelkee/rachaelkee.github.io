@@ -1,56 +1,229 @@
 ---
+layout: single
+title: "Rachael Kee"
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
 author_profile: true
-redirect_from: 
+classes: wide
+redirect_from:
   - /about/
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+{% include base_path %}
+{% assign headshot = site.author.avatar | default: "profile.png" %}
+{% assign recent_news = site.posts | where_exp: "post", "post.date <= site.time" %}
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+<style>
+  .home-hero {
+    display: grid;
+    grid-template-columns: minmax(240px, 290px) 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    margin: 0.5rem 0 2.25rem;
+  }
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+  .home-portrait {
+    margin: 0;
+    padding: 0.85rem;
+    border-radius: 1.75rem;
+    background: linear-gradient(145deg, rgba(29, 78, 66, 0.16), rgba(15, 23, 42, 0.05));
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+  }
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+  .home-portrait img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1.25rem;
+    background: #f3f4f6;
+  }
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
+  .home-kicker {
+    margin: 0 0 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5f726a;
+  }
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+  .home-lead {
+    margin: 0;
+    font-size: clamp(1.2rem, 2vw, 1.48rem);
+    line-height: 1.7;
+    color: #1f2937;
+  }
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+  .home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.35rem;
+  }
 
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+  .home-section {
+    margin-top: 2.75rem;
+  }
 
-**Markdown generator**
+  .home-section__label {
+    margin: 0 0 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
+  .home-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
 
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and Markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+  .home-link {
+    display: block;
+    padding: 1.05rem 1.1rem;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+    transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  }
 
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
+  .home-link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(32, 93, 79, 0.28);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  }
 
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+  .home-link h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.02rem;
+  }
+
+  .home-link p {
+    margin: 0;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .home-news {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .home-news__item {
+    padding: 1rem 1.1rem;
+    border-left: 3px solid #1f6f5b;
+    border-radius: 0.85rem;
+    background: #fafafa;
+  }
+
+  .home-news__meta {
+    margin: 0 0 0.4rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+
+  .home-news__item h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .home-news__item p {
+    margin: 0.5rem 0 0;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  .home-news__more {
+    margin-top: 0.9rem;
+  }
+
+  @media (max-width: 900px) {
+    .home-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .home-links {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="home-hero">
+  <figure class="home-portrait">
+    <img src="{{ headshot | prepend: '/images/' | prepend: base_path }}" alt="Portrait of Rachael Kee" />
+  </figure>
+
+  <div class="home-hero__copy">
+    <p class="home-kicker">PhD Candidate in Communication · UC Davis</p>
+    <p class="home-lead">Rachael Kee studies neurobiological explanations of human communication, with a particular interest in sleep neuroscience, media effects, and computational approaches to social science.</p>
+    <div class="home-actions">
+      <a class="btn" href="{{ base_path }}/research/">Research</a>
+      <a class="btn" href="{{ base_path }}/publications/">Publications</a>
+      <a class="btn" href="{{ base_path }}/cv/">CV</a>
+      <a class="btn btn--inverse" href="mailto:rlkee@ucdavis.edu">Contact</a>
+    </div>
+  </div>
+</div>
+
+<section class="home-section">
+  <p class="home-section__label">Explore</p>
+  <div class="home-links">
+    <a class="home-link" href="{{ base_path }}/research/">
+      <h3>Research</h3>
+      <p>Research questions, methods, and the themes that connect sleep, media, and communication.</p>
+    </a>
+    <a class="home-link" href="{{ base_path }}/publications/">
+      <h3>Publications</h3>
+      <p>Current journal articles and conference papers, organized by collection.</p>
+    </a>
+    <a class="home-link" href="{{ base_path }}/cv/">
+      <h3>CV</h3>
+      <p>A compact overview of training, experience, and academic service.</p>
+    </a>
+    <a class="home-link" href="{{ base_path }}/talks/">
+      <h3>Talks</h3>
+      <p>Invited talks, conference presentations, and related scholarly events.</p>
+    </a>
+    <a class="home-link" href="{{ base_path }}/teaching/">
+      <h3>Teaching</h3>
+      <p>Courses, instruction, and mentoring experience.</p>
+    </a>
+    <a class="home-link" href="{{ base_path }}/year-archive/">
+      <h3>News</h3>
+      <p>Recent updates, conference activity, and research milestones.</p>
+    </a>
+  </div>
+</section>
+
+<section class="home-section">
+  <p class="home-section__label">Recent News</p>
+  <div class="home-news">
+    {% if recent_news.size > 0 %}
+      {% for post in recent_news limit: 3 %}
+        <article class="home-news__item">
+          <p class="home-news__meta">{{ post.date | date: "%B %Y" }}</p>
+          <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+          {% if post.excerpt %}
+            <p>{{ post.excerpt | strip_html | truncate: 180 }}</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+      <p class="home-news__more"><a href="{{ base_path }}/year-archive/">View all news</a></p>
+    {% else %}
+      <p>No news items have been published yet.</p>
+    {% endif %}
+  </div>
+</section>
