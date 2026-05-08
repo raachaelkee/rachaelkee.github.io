@@ -11,54 +11,40 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D. in Communication, University of California, Davis, expected June 2028
+  * Designated emphasis in Computational Social Science
+* M.A. in Psychology, California Polytechnic State University, Humboldt, 2023
+* B.A. in Psychology and Communication, California Polytechnic State University, Humboldt, 2023
 
-Work experience
+Research Interests
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* Neurobiological explanations of human communication
+* Sleep neuroscience and the role of media in shaping cognitive and communicative processes
+* Computational and high-throughput approaches to social science
+* Electroencephalography (EEG) and functional magnetic resonance imaging (fMRI)
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
+Affiliations
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Cognitive Communication Science Lab, UC Davis
 
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
+
 Talks
 ======
   <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
+    {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
-  
+
 Teaching
 ======
   <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Service and leadership
+
+Service and Leadership
 ======
-* Currently signed in to 43 different slack teams
+* Mentoring undergraduate researchers, UC Davis
